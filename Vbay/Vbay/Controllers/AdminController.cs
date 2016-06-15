@@ -16,9 +16,56 @@ namespace Vbay.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Ads.ToList());
+            ViewBag.HeadlineSortParam = sortOrder == "Headline" ? "headline_desc" : "Headline";
+            ViewBag.DescriptionSortParam = sortOrder == "Description" ? "description_desc" : "Description";
+            ViewBag.PriceSortParam = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.ApprovedSortParam = String.IsNullOrEmpty(sortOrder) ? "approved_desc" : "";
+
+            var ads = from a in db.Ads
+                      select a;
+
+            switch (sortOrder)
+            {
+                case "Headline":
+                    ads = ads.OrderBy(a => a.Headline);
+                    break;
+                case "headline_desc":
+                    ads = ads.OrderByDescending(a => a.Headline);
+                    break;
+
+                case "Description":
+                    ads = ads.OrderBy(a => a.Description);
+                    break;
+                case "description_desc":
+                    ads = ads.OrderByDescending(a => a.Description);
+                    break;
+
+                case "Price":
+                    ads = ads.OrderByDescending(a => a.Price);
+                    break;
+                case "price_desc":
+                    ads = ads.OrderBy(a => a.Price);
+                    break;
+
+                case "date_desc":
+                    ads = ads.OrderByDescending(a => a.DatePosted);
+                    break;
+                case "Date":
+                    ads = ads.OrderBy(a => a.DatePosted);
+                    break;
+
+                case "approved_desc":
+                    ads = ads.OrderBy(a => a.Approved);
+                    break;
+                default:
+                    ads = ads.OrderByDescending(a => a.Approved);
+                    break;
+
+            }
+            return View(ads.ToList());
         }
 
         // GET: Admin/Details/5
