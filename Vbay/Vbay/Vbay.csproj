@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,6 +205,10 @@
     <Compile Include="Migrations\201606151357227_FirstLastPhone.cs" />
     <Compile Include="Migrations\201606151357227_FirstLastPhone.Designer.cs">
       <DependentUpon>201606151357227_FirstLastPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606151400105_AddedAd.cs" />
+    <Compile Include="Migrations\201606151400105_AddedAd.Designer.cs">
+      <DependentUpon>201606151400105_AddedAd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -273,6 +278,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Ads\Create.cshtml" />
+    <Content Include="Views\Ads\Delete.cshtml" />
+    <Content Include="Views\Ads\Details.cshtml" />
+    <Content Include="Views\Ads\Edit.cshtml" />
+    <Content Include="Views\Ads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -288,6 +298,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606151357227_FirstLastPhone.resx">
       <DependentUpon>201606151357227_FirstLastPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606151400105_AddedAd.resx">
+      <DependentUpon>201606151400105_AddedAd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
