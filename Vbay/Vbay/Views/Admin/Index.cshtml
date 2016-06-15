@@ -5,7 +5,13 @@
 }
 
 <h2>Index</h2>
-
+@using (Html.BeginForm())
+{
+    <p>
+        Search Ads: @Html.TextBox("searchString")
+        <input type="submit" value="Search"/>
+    </p>
+}
 <table class="table">
     <tr>
         <th>

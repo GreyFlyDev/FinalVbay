@@ -17,7 +17,7 @@ namespace Vbay.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Ads
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.HeadlineSortParam = sortOrder == "Headline" ? "headline_desc" : "Headline";
             ViewBag.DescriptionSortParam = sortOrder == "Description" ? "description_desc" : "Description";
@@ -26,6 +26,12 @@ namespace Vbay.Controllers
 
             var ads = from a in db.Ads
                       select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ads = ads.Where(a => a.Headline.Contains(searchString) ||
+                a.Description.Contains(searchString));
+            }
 
             switch (sortOrder)
             {
