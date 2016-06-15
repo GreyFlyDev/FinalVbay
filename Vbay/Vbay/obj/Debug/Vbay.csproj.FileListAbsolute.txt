@@ -80,3 +80,5 @@ C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\bin\Microsoft.Owin.Security.Micros
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.csprojResolveAssemblyReference.cache
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.dll
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.pdb
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.FirstLastPhone.resources
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.csproj.GenerateResource.Cache

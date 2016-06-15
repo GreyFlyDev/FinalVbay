@@ -28,6 +28,8 @@ namespace Vbay.Models
         {
         }
 
+        public DbSet<Ad> Ads { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
