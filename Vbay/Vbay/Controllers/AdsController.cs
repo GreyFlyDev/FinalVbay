@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -50,6 +51,9 @@ namespace Vbay.Controllers
         {
             if (ModelState.IsValid)
             {
+                ad.UserId = User.Identity.GetUserId();
+                ad.DatePosted = DateTime.Today;
+
                 db.Ads.Add(ad);
                 db.SaveChanges();
                 return RedirectToAction("Index");
