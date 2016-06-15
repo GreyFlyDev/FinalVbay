@@ -10,7 +10,7 @@ using Vbay.Models;
 
 namespace Vbay.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = RoleNames.ROLE_ADMIN)]
     public class AdminController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

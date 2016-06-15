@@ -203,6 +203,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\RoleHelper.cs" />
     <Compile Include="Migrations\201606151357227_FirstLastPhone.cs" />
     <Compile Include="Migrations\201606151357227_FirstLastPhone.Designer.cs">
       <DependentUpon>201606151357227_FirstLastPhone.cs</DependentUpon>
@@ -216,6 +217,7 @@
     <Compile Include="Models\Ad.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoleNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
