@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Headline)
+            @Html.ActionLink("Headline", "Index", new { sortOrder = ViewBag.HeadlinesortParam})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionsortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParam})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DatePosted)
+            @Html.ActionLink("Date Posted", "Index", new { sortOrder = ViewBag.DateSortParam})
         </th>
         <th></th>
     </tr>

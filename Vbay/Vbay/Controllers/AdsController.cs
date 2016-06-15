@@ -17,10 +17,50 @@ namespace Vbay.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Ads
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            ViewBag.HeadlineSortParam = sortOrder == "Headline" ? "headline_desc" : "Headline";
+            ViewBag.DescriptionSortParam = sortOrder == "Description" ? "description_desc" : "Description";
+            ViewBag.PriceSortParam = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.DateSortParam = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+
+            var ads = from a in db.Ads
+                      select a;
+
+            switch (sortOrder)
+            {
+                case "Headline":
+                    ads = ads.OrderBy(a => a.Headline);
+                    break;
+                case "headline_desc":
+                    ads = ads.OrderByDescending(a => a.Headline);
+                    break;
+
+                case "Description":
+                    ads = ads.OrderBy(a => a.Description);
+                    break;
+                case "description_desc":
+                    ads = ads.OrderByDescending(a => a.Description);
+                    break;
+
+                case "Price":
+                    ads = ads.OrderByDescending(a => a.Price);
+                    break;
+                case "price_desc":
+                    ads = ads.OrderBy(a => a.Price);
+                    break;
+
+                case "date_desc":
+                    ads = ads.OrderByDescending(a => a.DatePosted);
+                    break;
+                default:
+                    ads = ads.OrderBy(a => a.DatePosted);
+                    break;
+                
+            }
+
             ViewBag.UserId = User.Identity.GetUserId();
-            return View(db.Ads.ToList());
+            return View(ads.ToList());
         }
 
         // GET: Ads/Details/5
