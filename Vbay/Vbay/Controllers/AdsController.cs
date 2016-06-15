@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,6 +34,15 @@ namespace Vbay.Controllers
             {
                 return HttpNotFound();
             }
+
+            var userManager = new UserManager<ApplicationUser>(
+                new UserStore<ApplicationUser>(db));
+            var currentUser = userManager.FindById(ad.UserId);
+
+            ViewBag.UserFirstName = currentUser.FirstName;
+            ViewBag.UserLastName = currentUser.LastName;
+            ViewBag.UserPhone = currentUser.PhoneNumber;
+            ViewBag.UserEmail = currentUser.Email;
             return View(ad);
         }
 
