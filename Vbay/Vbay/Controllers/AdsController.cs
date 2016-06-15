@@ -19,6 +19,7 @@ namespace Vbay.Controllers
         // GET: Ads
         public ActionResult Index()
         {
+            ViewBag.UserId = User.Identity.GetUserId();
             return View(db.Ads.ToList());
         }
 
