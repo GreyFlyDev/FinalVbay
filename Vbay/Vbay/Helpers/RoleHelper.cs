@@ -23,7 +23,22 @@ namespace Vbay.Helpers
             }
 
             string userName = "gflynn@volusia.org";
+            string password = "Passw0rd!";
             ApplicationUser user = userManager.FindByEmail(userName);
+
+            if(user == null)
+            {
+                user = new ApplicationUser()
+                {
+                    UserName = userName,
+                    Email = userName,
+                    EmailConfirmed = true,
+                    FirstName = "Greg"
+                };
+
+                IdentityResult userResult = userManager.Create(user, password);
+                
+            }
             var result = userManager.AddToRole(user.Id, RoleNames.ROLE_ADMIN);
 
         }
