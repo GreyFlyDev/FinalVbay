@@ -28,7 +28,7 @@
 
 @foreach (var item in Model)
 {
-    if (item.UserId != ViewBag.UserId)
+    if (item.UserId != ViewBag.UserId && item.Approved == true)
     {
         <tr>
             <td>
