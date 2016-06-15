@@ -1,11 +1,12 @@
 ﻿@model Vbay.Models.Ad
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Ad</h4>
     <hr />
@@ -35,34 +36,37 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Approved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approved)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DatePosted)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DatePosted)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
     </dl>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Contact Information</th>
-            </tr>
-        </thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-        </tr>
-        <tr>
-            <td>@ViewBag.UserFirstName</td>
-            <td>@ViewBag.UserLastName</td>
-            <td>@ViewBag.UserPhone</td>
-            <td>@ViewBag.UserEmail</td>
-        </tr>
-    </table>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
