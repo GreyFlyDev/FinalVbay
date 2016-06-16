@@ -119,62 +119,7 @@ namespace Vbay.Controllers
             return View(ad);
         }
 
-        // GET: Ads/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ad ad = db.Ads.Find(id);
-            if (ad == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ad);
-        }
 
-        // POST: Ads/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Headline,Description,Price,Approved,DatePosted,UserId")] Ad ad)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(ad).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(ad);
-        }
-
-        // GET: Ads/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ad ad = db.Ads.Find(id);
-            if (ad == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ad);
-        }
-
-        // POST: Ads/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Ad ad = db.Ads.Find(id);
-            db.Ads.Remove(ad);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

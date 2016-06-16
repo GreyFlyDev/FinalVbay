@@ -10,7 +10,7 @@ namespace Vbay.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Ads");
         }
 
         public ActionResult About()
