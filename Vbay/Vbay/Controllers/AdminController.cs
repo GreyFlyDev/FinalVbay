@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -63,30 +65,16 @@ namespace Vbay.Controllers
                     break;
 
                 case "approved_desc":
-                    ads = ads.OrderBy(a => a.Approved);
+                    ads = ads.OrderByDescending(a => a.Approved);
                     break;
                 default:
-                    ads = ads.OrderByDescending(a => a.Approved);
+                    ads = ads.OrderBy(a => a.Approved);
                     break;
 
             }
             return View(ads.ToList());
         }
 
-        // GET: Admin/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ad ad = db.Ads.Find(id);
-            if (ad == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ad);
-        }
 
        
         // GET: Admin/Edit/5
@@ -101,6 +89,17 @@ namespace Vbay.Controllers
             {
                 return HttpNotFound();
             }
+
+            var userManager = new UserManager<ApplicationUser>(
+                new UserStore<ApplicationUser>(db));
+            ApplicationUser adOwner = userManager.FindById(ad.UserId);
+
+            ViewBag.UserFirstName = adOwner.FirstName;
+            ViewBag.UserLastName = adOwner.LastName;
+            ViewBag.UserPhone = adOwner.PhoneNumber;
+            ViewBag.UserEmail = adOwner.Email;
+            TempData["UserId"] = ad.UserId;
+
             return View(ad);
         }
 
@@ -113,6 +112,9 @@ namespace Vbay.Controllers
         {
             if (ModelState.IsValid)
             {
+                ad.UserId = TempData["UserId"].ToString();
+                ad.DatePosted = DateTime.Now;
+
                 db.Entry(ad).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

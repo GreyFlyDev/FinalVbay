@@ -57,10 +57,10 @@ namespace Vbay.Controllers
                     break;
 
                 case "date_desc":
-                    ads = ads.OrderByDescending(a => a.DatePosted);
+                    ads = ads.OrderBy(a => a.DatePosted);
                     break;
                 default:
-                    ads = ads.OrderBy(a => a.DatePosted);
+                    ads = ads.OrderByDescending(a => a.DatePosted);
                     break;
                 
             }
