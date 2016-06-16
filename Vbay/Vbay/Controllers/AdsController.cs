@@ -69,6 +69,11 @@ namespace Vbay.Controllers
             return View(ads.ToList());
         }
 
+        public ActionResult Rules()
+        {
+            return View();
+        }
+
         // GET: Ads/Details/5
         public ActionResult Details(int? id)
         {

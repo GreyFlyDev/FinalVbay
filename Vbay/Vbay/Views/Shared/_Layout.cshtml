@@ -22,6 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Ads")</li>
+                    <li>@Html.ActionLink("Rules", "Rules", "Ads")</li>
                     <li>@Html.ActionLink("Create Ad", "Create", "Ads")</li>
                     <li>@Html.ActionLink("My Ads", "Index", "CurrentUserAds")</li>
                     @if (User.IsInRole("Administrator"))
