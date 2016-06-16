@@ -4,7 +4,8 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Create Your Classified Ad</h2>
+<p>Please read @Html.ActionLink("the rules", "Rules", "Ads") before attempting to create an ad. </p>
 
 
 @using (Html.BeginForm()) 
@@ -12,10 +13,21 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Ad</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-2">
+                    <h3><b>Step 1:</b> Enter the headline for the ad. </h3>
+
+                    <p>
+                        This will be displayed as the link you can click on the V-bay page.
+                        Example: Motorcycle for sale
+                    </p><br />
+                </div>
+
+            </div>
             @Html.LabelFor(model => model.Headline, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Headline, new { htmlAttributes = new { @class = "form-control" } })
@@ -24,14 +36,35 @@
         </div>
 
         <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-2">
+                    <h3><b>Step 2:</b> Enter your ad information. </h3>
+                    <p>
+                        This is the text that will be displayed in the pop-up window when someone clicks on your headline.
+                        Example: Harley Ultra Classic 2000, fully loaded, 15K, warranty, $19,500. Call Mike at 555-1212.
+                        <b>Sorry, we cannot accept pictures to accompany your advertisement.</b>
+                    </p>
+                    <div class="alert-danger">
+                        Ads for rentals of homes, apartments, condos, vacation homes, etc., are not permitted. There are no exceptions! 
+                    </div><br />
+                </div>
+            </div>
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor( model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-2">
+                    <h3><b>Step 3:</b> Enter your price.</h3>
+                    <p>
+                        Take a second and evaluate your product and decide upon a price.
+                    </p><br />
+                </div>
+            </div>
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
@@ -40,6 +73,16 @@
         </div>
 
         <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-2">
+                    <h3><b>Step 4:</b> Double check your ad. </h3>
+                    <p>
+                        Take a minute to reread your ad. 
+                        Is it understandable to someone who may not be familiar with the item?
+                         Is everything spelled correctly?
+                    </p>
+                </div>
+            </div>
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

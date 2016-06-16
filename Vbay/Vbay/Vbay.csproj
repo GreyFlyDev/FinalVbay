@@ -284,9 +284,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Ads\Create.cshtml" />
-    <Content Include="Views\Ads\Delete.cshtml" />
     <Content Include="Views\Ads\Details.cshtml" />
-    <Content Include="Views\Ads\Edit.cshtml" />
     <Content Include="Views\Ads\Index.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />

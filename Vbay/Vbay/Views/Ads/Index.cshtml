@@ -4,11 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Classified Ads For Employees</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    Below are the ads currently active on V-bay. 
+    If you are interested in creating your own V-bay ad, please click @Html.ActionLink("Here", "Create", "Ads") to create a new item.
+     Please read @Html.ActionLink("the Rules","Rules", "Ads") before you attempt to post an ad.
 </p>
+<br />
 
 @using (Html.BeginForm())
 {
