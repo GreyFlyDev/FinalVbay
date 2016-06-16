@@ -12,6 +12,7 @@ using Vbay.Models;
 
 namespace Vbay.Controllers
 {
+    [Authorize]
     public class CurrentUserAdsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

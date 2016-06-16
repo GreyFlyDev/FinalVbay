@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Vbay.Models
 {
@@ -9,6 +10,7 @@ namespace Vbay.Models
     {
         public int Id { get; set; }
         public string Headline { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
         public decimal Price { get; set; }
         public bool Approved { get; set; }

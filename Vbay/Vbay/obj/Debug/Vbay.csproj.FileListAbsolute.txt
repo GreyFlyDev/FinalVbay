@@ -83,3 +83,4 @@ C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.pdb
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.FirstLastPhone.resources
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.csproj.GenerateResource.Cache
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.AddedAd.resources
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\bin\NetSpell.SpellChecker.dll

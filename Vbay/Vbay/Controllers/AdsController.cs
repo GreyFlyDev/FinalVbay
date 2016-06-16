@@ -99,6 +99,7 @@ namespace Vbay.Controllers
         }
 
         // GET: Ads/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
