@@ -42,27 +42,29 @@
             @Html.DisplayFor(model => model.DatePosted)
         </dd>
     </dl>
+    <div class="col-md-offset-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Contact Information</th>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
 
-    <table class="table">
-        <thead>
             <tr>
-                <th>Contact Information</th>
+                <td>@ViewBag.UserFirstName</td>
+                <td>@ViewBag.UserLastName</td>
+                <td>@ViewBag.UserPhone</td>
+                <td>@ViewBag.UserEmail</td>
             </tr>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-            </tr>
-        </thead>
+        </table>
+    </div>
 
-        <tr>
-            <td>@ViewBag.UserFirstName</td>
-            <td>@ViewBag.UserLastName</td>
-            <td>@ViewBag.UserPhone</td>
-            <td>@ViewBag.UserEmail</td>
-        </tr>
-    </table>
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
