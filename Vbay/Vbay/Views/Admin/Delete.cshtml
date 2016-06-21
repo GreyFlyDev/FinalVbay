@@ -24,7 +24,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
         </dd>
 
         <dt>
@@ -49,14 +49,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.DatePosted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
         </dd>
 
     </dl>
