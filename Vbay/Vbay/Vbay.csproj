@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201606151400105_AddedAd.Designer.cs">
       <DependentUpon>201606151400105_AddedAd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606211301306_TinyMceChanges.cs" />
+    <Compile Include="Migrations\201606211301306_TinyMceChanges.Designer.cs">
+      <DependentUpon>201606211301306_TinyMceChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ad.cs" />
@@ -1550,6 +1554,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606151400105_AddedAd.resx">
       <DependentUpon>201606151400105_AddedAd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606211301306_TinyMceChanges.resx">
+      <DependentUpon>201606211301306_TinyMceChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
