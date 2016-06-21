@@ -97,6 +97,7 @@ namespace Vbay.Controllers
             TempData["UserId"] = ad.UserId;
             TempData["AdStatus"] = ad.Approved;
             TempData["DatePosted"] = ad.DatePosted;
+            TempData["CurrentDescription"] = ad.Description;
             return View(ad);
         }
 
@@ -109,9 +110,14 @@ namespace Vbay.Controllers
         {
             if (ModelState.IsValid)
             {
-                ad.Approved = (bool)TempData["AdStatus"];
                 ad.UserId = TempData["UserId"].ToString();
                 ad.DatePosted = (DateTime)TempData["DatePosted"];
+                if (TempData["CurrentDescription"].ToString() == ad.Description)
+                {
+                    ad.Approved = (bool)TempData["AdStatus"];
+                }
+                else
+                    ad.Approved = false;
 
                 db.Entry(ad).State = EntityState.Modified;
                 db.SaveChanges();
