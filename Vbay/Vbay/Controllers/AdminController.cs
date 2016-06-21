@@ -98,7 +98,11 @@ namespace Vbay.Controllers
             ViewBag.UserLastName = adOwner.LastName;
             ViewBag.UserPhone = adOwner.PhoneNumber;
             ViewBag.UserEmail = adOwner.Email;
+            ViewBag.AdDescription = ad.Description;
             TempData["UserId"] = ad.UserId;
+            TempData["AdDescription"] = ad.Description;
+            TempData["AdPrice"] = ad.Price;
+            TempData["AdHeadline"] = ad.Headline;
 
             return View(ad);
         }
@@ -113,6 +117,9 @@ namespace Vbay.Controllers
             if (ModelState.IsValid)
             {
                 ad.UserId = TempData["UserId"].ToString();
+                ad.Headline = TempData["AdHeadline"].ToString();
+                ad.Description = TempData["AdDescription"].ToString();
+                ad.Price = (decimal)TempData["AdPrice"];
                 ad.DatePosted = DateTime.Now;
 
                 db.Entry(ad).State = EntityState.Modified;
