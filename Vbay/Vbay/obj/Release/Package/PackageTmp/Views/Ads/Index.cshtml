@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Vbay.Models.Ad>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Classified Ads For Employees</h2>
+<p>
+    Below are the ads currently active on V-bay. 
+    If you are interested in creating your own V-bay ad, please click @Html.ActionLink("Here", "Create", "Ads") to create a new item.
+     Please read @Html.ActionLink("the Rules","Rules", "Ads") before you attempt to post an ad.
+</p>
+<br />
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search Ads: @Html.TextBox("searchString")
+        <input type="submit" value="Search"/>
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Headline", "Index", new { sortOrder = ViewBag.HeadlinesortParam})
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionsortParam })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParam})
+        </th>
+        <th>
+            @Html.ActionLink("Date Posted", "Index", new { sortOrder = ViewBag.DateSortParam})
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.UserId != ViewBag.UserId && item.Approved == true)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headline)
+            </td>
+            <td>
+                @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePosted)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+}
+
+</table>

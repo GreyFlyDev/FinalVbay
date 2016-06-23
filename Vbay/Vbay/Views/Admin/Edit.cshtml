@@ -45,7 +45,16 @@
             @Html.LabelFor(model => model.Approved, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Approved)
+                    @Html.DropDownListFor(model => model.Approved, new SelectList(
+                            new[]
+                            {
+                                new {Value = "", Text = "(none)"},
+                                new {Value = "true", Text = "Yes"},
+                                new {Value = "false", Text = "No"}
+                            },
+                            "Value",
+                            "Text",
+                            Model))
                     @Html.ValidationMessageFor(model => model.Approved, "", new { @class = "text-danger" })
                 </div>
             </div>

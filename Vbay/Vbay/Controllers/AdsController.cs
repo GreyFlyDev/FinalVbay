@@ -95,6 +95,7 @@ namespace Vbay.Controllers
             ViewBag.UserLastName = currentUser.LastName;
             ViewBag.UserPhone = currentUser.PhoneNumber;
             ViewBag.UserEmail = currentUser.Email;
+
             return View(ad);
         }
 
@@ -115,7 +116,7 @@ namespace Vbay.Controllers
             if (ModelState.IsValid)
             {
                 ad.UserId = User.Identity.GetUserId();
-                ad.DatePosted = DateTime.Today;
+                ad.DatePosted = DateTime.Now;
 
                 db.Ads.Add(ad);
                 db.SaveChanges();

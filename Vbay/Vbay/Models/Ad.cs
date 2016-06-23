@@ -15,7 +15,7 @@ namespace Vbay.Models
         [UIHint("tinymce_full_compressed")]
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public bool Approved { get; set; }
+        public bool ? Approved { get; set; }
         public DateTime DatePosted { get; set; }
         
         public string UserId { get; set; }

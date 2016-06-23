@@ -85,3 +85,4 @@ C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.csproj.GenerateReso
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.AddedAd.resources
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\bin\NetSpell.SpellChecker.dll
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.TinyMceChanges.resources
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.NullableAdStatus.resources

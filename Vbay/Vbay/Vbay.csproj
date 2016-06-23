@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201606211301306_TinyMceChanges.Designer.cs">
       <DependentUpon>201606211301306_TinyMceChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606231228061_NullableAdStatus.cs" />
+    <Compile Include="Migrations\201606231228061_NullableAdStatus.Designer.cs">
+      <DependentUpon>201606231228061_NullableAdStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ad.cs" />
@@ -1309,6 +1313,7 @@
     <Content Include="richtexteditor\config\guest.config" />
     <Content Include="richtexteditor\config\default.config" />
     <Content Include="richtexteditor\config\admin.config" />
+    <None Include="Properties\PublishProfiles\VbayTest.pubxml" />
     <None Include="richtexteditor\core\jsml.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1557,6 +1562,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606211301306_TinyMceChanges.resx">
       <DependentUpon>201606211301306_TinyMceChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606231228061_NullableAdStatus.resx">
+      <DependentUpon>201606231228061_NullableAdStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
