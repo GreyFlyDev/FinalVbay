@@ -122,6 +122,17 @@ namespace Vbay.Controllers
                 ad.Price = (decimal)TempData["AdPrice"];
                 ad.DatePosted = DateTime.Now;
 
+                switch (ad.Approved)
+                {
+                    case true:
+                        ad.Active = true;
+                        break;
+
+                    case false:
+                        ad.Active = false;
+                        break;
+                }
+
                 db.Entry(ad).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -150,7 +161,7 @@ namespace Vbay.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Ad ad = db.Ads.Find(id);
-            db.Ads.Remove(ad);
+            ad.Active = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

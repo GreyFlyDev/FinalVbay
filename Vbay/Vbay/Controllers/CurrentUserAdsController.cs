@@ -98,6 +98,7 @@ namespace Vbay.Controllers
             TempData["AdStatus"] = ad.Approved;
             TempData["DatePosted"] = ad.DatePosted;
             TempData["CurrentDescription"] = ad.Description;
+            TempData["AdActive"] = ad.Active;
             return View(ad);
         }
 
@@ -112,12 +113,17 @@ namespace Vbay.Controllers
             {
                 ad.UserId = TempData["UserId"].ToString();
                 ad.DatePosted = (DateTime)TempData["DatePosted"];
+                ad.Active = (bool)TempData["AdActive"];
                 if (TempData["CurrentDescription"].ToString() == ad.Description)
                 {
                     ad.Approved = (bool)TempData["AdStatus"];
                 }
                 else
-                    ad.Approved = false;
+                {
+                    ad.Approved = null;
+                    ad.Active = true;
+                }
+                    
 
                 db.Entry(ad).State = EntityState.Modified;
                 db.SaveChanges();
@@ -147,8 +153,9 @@ namespace Vbay.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Ad ad = db.Ads.Find(id);
-            db.Ads.Remove(ad);
+            ad.Active = false;
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

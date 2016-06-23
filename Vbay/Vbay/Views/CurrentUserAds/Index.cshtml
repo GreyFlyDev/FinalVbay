@@ -11,6 +11,8 @@
         <input type="submit" value="Search" />
     </p>
 }
+
+<h3>Your Active Ads</h3>
 <table class="table">
     <tr>
         <th>
@@ -33,31 +35,62 @@
 
 @foreach (var item in Model)
 {
-    if (item.UserId == ViewBag.UserId)
+    if (item.UserId == ViewBag.UserId && item.Active == true)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Headline)
-            </td>
-            <td>
-                @Html.Raw(HttpUtility.HtmlDecode(item.Description))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Approved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatePosted)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Headline)
+                    </td>
+                    <td>
+                        @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Approved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DatePosted)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
     }
-
 }
+</table>
+
+<h3>Your Expired Ads</h3>
+<table class="table">
+    
+    @foreach (var item in Model)
+    {
+        if (item.UserId == ViewBag.UserId && item.Active == false)
+        {
+            <tr>
+                <td class="alert-danger">
+                    @Html.DisplayFor(modelItem => item.Headline)
+                </td>
+                <td class="alert-danger">
+                    @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                </td>
+                <td class="alert-danger">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="alert-danger">
+                    @Html.DisplayFor(modelItem => item.Approved)
+                </td>
+                <td class="alert-danger">
+                    @Html.DisplayFor(modelItem => item.DatePosted)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
 
 </table>

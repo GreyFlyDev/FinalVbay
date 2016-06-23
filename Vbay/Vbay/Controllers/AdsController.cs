@@ -19,20 +19,38 @@ namespace Vbay.Controllers
         // GET: Ads
         public ActionResult Index(string sortOrder, string searchString)
         {
+            //For sorting Ads
             ViewBag.HeadlineSortParam = sortOrder == "Headline" ? "headline_desc" : "Headline";
             ViewBag.DescriptionSortParam = sortOrder == "Description" ? "description_desc" : "Description";
             ViewBag.PriceSortParam = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.DateSortParam = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
 
+            //Get List of Ads from db
             var ads = from a in db.Ads
                       select a;
+            
+            
+            //Determine if Ad is older than 20 days
+            foreach(var a in ads)
+            {
+                if((DateTime.Now - a.DatePosted).Days >= 1 || a.Active == false)
+                {
+                    a.Active = false;
+                }
+                else
+                {
+                    a.Active = true;
+                }
+            }
 
+            //For searching through Ads
             if (!String.IsNullOrEmpty(searchString))
             {
                 ads = ads.Where(a => a.Headline.Contains(searchString) ||
                 a.Description.Contains(searchString));
             }
 
+            //For sorting
             switch (sortOrder)
             {
                 case "Headline":
@@ -117,6 +135,7 @@ namespace Vbay.Controllers
             {
                 ad.UserId = User.Identity.GetUserId();
                 ad.DatePosted = DateTime.Now;
+                ad.Active = true;
 
                 db.Ads.Add(ad);
                 db.SaveChanges();

@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201606231228061_NullableAdStatus.Designer.cs">
       <DependentUpon>201606231228061_NullableAdStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606231233244_AddedActiveProperty.cs" />
+    <Compile Include="Migrations\201606231233244_AddedActiveProperty.Designer.cs">
+      <DependentUpon>201606231233244_AddedActiveProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ad.cs" />
@@ -1565,6 +1569,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606231228061_NullableAdStatus.resx">
       <DependentUpon>201606231228061_NullableAdStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606231233244_AddedActiveProperty.resx">
+      <DependentUpon>201606231233244_AddedActiveProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
