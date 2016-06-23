@@ -116,6 +116,11 @@ namespace Vbay.Controllers
                 ad.Active = (bool)TempData["AdActive"];
                 if (TempData["CurrentDescription"].ToString() == ad.Description)
                 {
+                    if(TempData["AdStatus"] == null)
+                    {
+                        ad.Approved = null;
+                    }
+                    else
                     ad.Approved = (bool)TempData["AdStatus"];
                 }
                 else
