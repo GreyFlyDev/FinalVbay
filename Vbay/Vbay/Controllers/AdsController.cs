@@ -33,7 +33,7 @@ namespace Vbay.Controllers
             //Determine if Ad is older than 20 days
             foreach(var a in ads)
             {
-                if((DateTime.Now - a.DatePosted).Days >= 1 || a.Active == false)
+                if((DateTime.Now - a.DatePosted).Days >= 20 || a.Active == false)
                 {
                     a.Active = false;
                 }

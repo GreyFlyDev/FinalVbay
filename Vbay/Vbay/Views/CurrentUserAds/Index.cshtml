@@ -12,7 +12,7 @@
     </p>
 }
 
-<h3>Your Active Ads</h3>
+<h3>My Active Ads</h3>
 <table class="table">
     <tr>
         <th>
@@ -60,10 +60,28 @@
                 </tr>
     }
 }
-</table>
+</table><br />
 
-<h3>Your Expired Ads</h3>
+<h3>My Expired Ads</h3>
 <table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Headline", "Index", new { sortOrder = ViewBag.HeadlinesortParam })
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionsortParam })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParam })
+        </th>
+        <th>
+            @Html.ActionLink("Approved", "Index", new { sortOrder = ViewBag.ApprovedSortParam })
+        </th>
+        <th>
+            @Html.ActionLink("Date Posted", "Index", new { sortOrder = ViewBag.DateSortParam })
+        </th>
+        <th></th>
+    </tr>
     
     @foreach (var item in Model)
     {

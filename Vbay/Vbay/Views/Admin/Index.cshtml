@@ -5,6 +5,7 @@
 }
 
 <h2>Index</h2>
+
 @using (Html.BeginForm())
 {
     <p>
@@ -29,8 +30,14 @@
         <th>
             @Html.ActionLink("Date Posted", "Index", new { sortOrder = ViewBag.DateSortParam })
         </th>
-        <th></th>
+        <th>
+            <div class="pull-right">
+                @Html.DropDownList("adsStatusList", ViewBag.adsStatusList as SelectList, "Pending", new { @class = "form-control"})
+            </div>
+        </th>
     </tr>
+
+   <!--Todo: Handle on dropdown item selected-->
 
 @foreach (var item in Model)
 {

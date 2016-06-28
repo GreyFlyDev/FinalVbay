@@ -6,7 +6,9 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Vbay.Models;
 
@@ -25,6 +27,40 @@ namespace Vbay.Controllers
             ViewBag.PriceSortParam = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.ApprovedSortParam = String.IsNullOrEmpty(sortOrder) ? "approved_desc" : "";
+
+            List<SelectListItem> adStatusList = new List<SelectListItem>();
+            adStatusList.Add(new SelectListItem
+            {
+                Text = "Active",
+                Value = "Active"
+            });
+            adStatusList.Add(new SelectListItem
+            {
+                Text = "Expired",
+                Value = "Expired"
+            });
+            adStatusList.Add(new SelectListItem
+            {
+                Text = "Denied",
+                Value = "Denied"
+            });
+            adStatusList.Add(new SelectListItem
+            {
+                Text = "Approved",
+                Value = "Approved"
+            });
+            adStatusList.Add(new SelectListItem
+            {
+                Text = "Pending",
+                Value = "Pending"
+            });
+            adStatusList.Add(new SelectListItem
+            {
+                Text = "All",
+                Value = "All"
+            });
+
+            ViewBag.adsStatusList = adStatusList;
 
             var ads = from a in db.Ads
                       select a;
@@ -103,6 +139,7 @@ namespace Vbay.Controllers
             TempData["AdDescription"] = ad.Description;
             TempData["AdPrice"] = ad.Price;
             TempData["AdHeadline"] = ad.Headline;
+            TempData["AdStatus"] = ad.Approved;
 
             return View(ad);
         }
@@ -128,10 +165,56 @@ namespace Vbay.Controllers
                         ad.Active = true;
                         break;
 
+                    case null:
+                        ad.Active = true;
+                        break;
+
                     case false:
                         ad.Active = false;
                         break;
                 }
+
+                //Email Portion
+
+                var userManager = new UserManager<ApplicationUser>(
+                    new UserStore<ApplicationUser>(db));
+                var adOwner = userManager.FindById(ad.UserId);
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("gregnnylf94@gmail.com");
+                    mail.To.Add(adOwner.Email);
+                    mail.Subject = "Ad Status";
+
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new NetworkCredential("gregnnylf94@gmail.com", "Enjoilif3!");
+                        smtp.EnableSsl = true;
+                        if (TempData["AdStatus"] == null || ad.Approved != (bool)TempData["AdStatus"])
+                        {
+                            switch (ad.Approved)
+                            {
+                                case true:
+                                    //Send email "Your ad has been Aproved"
+                                    mail.Body = "<h1>Approved</h1> <p>Your ad has been approved as of " + DateTime.Now;
+                                    smtp.Send(mail);
+                                    break;
+
+                                case false:
+                                    //Send email "Your ad has been Denied"
+                                    mail.Body = "<h1>Denied</h1> <p>Your ad has been denied as of " + DateTime.Now;
+                                    smtp.Send(mail);
+                                    break;
+                            }
+                        }
+
+                    }
+                }
+
+
+                
 
                 db.Entry(ad).State = EntityState.Modified;
                 db.SaveChanges();
