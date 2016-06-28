@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Vbay.Models;
@@ -114,6 +115,8 @@ namespace Vbay.Controllers
                 ad.UserId = TempData["UserId"].ToString();
                 ad.DatePosted = (DateTime)TempData["DatePosted"];
                 ad.Active = (bool)TempData["AdActive"];
+
+                //If description does not change, do not change status or activity
                 if (TempData["CurrentDescription"].ToString() == ad.Description)
                 {
                     if(TempData["AdStatus"] == null)
@@ -125,8 +128,33 @@ namespace Vbay.Controllers
                 }
                 else
                 {
+                    //If it doesn't match resubmit for approval and make ad active 
                     ad.Approved = null;
                     ad.Active = true;
+
+                    //Email Portion
+
+                    var userManager = new UserManager<ApplicationUser>(
+                        new UserStore<ApplicationUser>(db));
+                    var adOwner = userManager.FindById(ad.UserId);
+
+                    using (MailMessage mail = new MailMessage())
+                    {
+                        mail.From = new MailAddress("gregnnylf94@gmail.com");
+                        mail.To.Add(adOwner.Email);
+                        mail.Subject = "Your Ad Has Changed";
+
+                        mail.IsBodyHtml = true;
+
+                        using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                        {
+                            smtp.Credentials = new NetworkCredential("gregnnylf94@gmail.com", "Enjoilif3!");
+                            smtp.EnableSsl = true;
+                            mail.Body = "<h1>Alert</h1><p>Since the description of your ad has changed, it has been resubmitted for approval.<br/> You will receive an email regarding your status shortly.</p>" +
+                                "<p>-Your Friendly Neighborhood Administrator</p>";
+                            smtp.Send(mail);
+                        }
+                    }
                 }
                     
 
