@@ -5,11 +5,12 @@
 }
 
 <h2>Index</h2>
+
 @using (Html.BeginForm())
 {
     <p>
         Search Ads: @Html.TextBox("searchString")
-        <input type="submit" value="Search"/>
+        <input type="submit" value="Search" />
     </p>
 }
 <table class="table">
@@ -24,65 +25,96 @@
             @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParam })
         </th>
         <th>
-            @Html.ActionLink("Approved", "Index", new { sortOrder = ViewBag.ApprovedSortParam})
+            @Html.ActionLink("Approved", "Index", new { sortOrder = ViewBag.ApprovedSortParam })
         </th>
         <th>
             @Html.ActionLink("Date Posted", "Index", new { sortOrder = ViewBag.DateSortParam })
         </th>
-        <th></th>
+        <th>
+
+        </th>
     </tr>
 
-@foreach (var item in Model)
-{
-    if (item.Approved == true)
-    {
-        <tr class="alert-success">
-            <td>
-                @Html.DisplayFor(modelItem => item.Headline)
-            </td>
-            <td>
-                @Html.Raw(HttpUtility.HtmlDecode(item.Description))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Approved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatePosted)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-    else
-    {
-        <tr class="alert-danger">
-            <td>
-                @Html.DisplayFor(modelItem => item.Headline)
-            </td>
-            <td>
-                @Html.Raw(HttpUtility.HtmlDecode(item.Description))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Approved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatePosted)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+    <!--Todo: Handle on dropdown item selected-->
 
-}
+    @foreach (var item in Model)
+            {
+                switch (item.Approved)
+                {
+                    case true:
+                <tr class="alert-success">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Headline)
+                    </td>
+                    <td>
+                        @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Approved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DatePosted)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+                break;
+
+            case false:
+                <tr class="alert-danger">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Headline)
+                    </td>
+                    <td>
+                        @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Approved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DatePosted)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+                break;
+
+            case null:
+                <tr class="alert-warning">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Headline)
+                    </td>
+                    <td>
+                        @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Approved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DatePosted)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+                break;
+
+        }
+
+    }
 
 </table>

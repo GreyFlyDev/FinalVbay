@@ -85,3 +85,7 @@ C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.Migrations.TinyMc
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.csproj.GenerateResource.Cache
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.dll
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.pdb
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.Migrations.NullableAdStatus.resources
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.Migrations.AddedActiveProperty.resources
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.Migrations.CommentsPropertyForAdEntity.resources
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Release\Vbay.Migrations.AdminFilterAddedToAd.resources

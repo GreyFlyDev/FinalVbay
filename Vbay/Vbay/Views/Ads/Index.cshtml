@@ -42,10 +42,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Headline)
+                @Html.DisplayFor(modelItem => item.ShortHeadline)
             </td>
             <td>
-                @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                @Html.Raw(HttpUtility.HtmlDecode(item.ShortDescription))
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)

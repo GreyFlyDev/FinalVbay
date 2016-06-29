@@ -44,10 +44,10 @@
                     case true:
                 <tr class="alert-success">
                     <td>
-                        @Html.DisplayFor(modelItem => item.Headline)
+                        @Html.DisplayFor(modelItem => item.ShortHeadline)
                     </td>
                     <td>
-                        @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                        @Html.Raw(HttpUtility.HtmlDecode(item.ShortDescription))
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Price)
@@ -68,10 +68,10 @@
             case false:
                 <tr class="alert-danger">
                     <td>
-                        @Html.DisplayFor(modelItem => item.Headline)
+                        @Html.DisplayFor(modelItem => item.ShortHeadline)
                     </td>
                     <td>
-                        @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                        @Html.Raw(HttpUtility.HtmlDecode(item.ShortDescription))
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Price)
@@ -92,10 +92,10 @@
             case null:
                 <tr class="alert-warning">
                     <td>
-                        @Html.DisplayFor(modelItem => item.Headline)
+                        @Html.DisplayFor(modelItem => item.ShortHeadline)
                     </td>
                     <td>
-                        @Html.Raw(HttpUtility.HtmlDecode(item.Description))
+                        @Html.Raw(HttpUtility.HtmlDecode(item.ShortDescription))
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Price)
