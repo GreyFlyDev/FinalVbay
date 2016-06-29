@@ -19,6 +19,7 @@ namespace Vbay.Models
         public bool Active { get; set; }
         public DateTime DatePosted { get; set; }
         public string AdminComments { get; set; }
+        public string AdminFilter { get; set; }
         
         public string UserId { get; set; }
     }

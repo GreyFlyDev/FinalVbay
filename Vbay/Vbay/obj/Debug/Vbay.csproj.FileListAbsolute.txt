@@ -88,3 +88,4 @@ C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.TinyMceC
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.NullableAdStatus.resources
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.AddedActiveProperty.resources
 C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.CommentsPropertyForAdEntity.resources
+C:\Users\gflynn\Documents\FinalVbay\Vbay\Vbay\obj\Debug\Vbay.Migrations.AdminFilterAddedToAd.resources

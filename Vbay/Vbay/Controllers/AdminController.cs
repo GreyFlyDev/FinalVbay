@@ -27,47 +27,38 @@ namespace Vbay.Controllers
             ViewBag.PriceSortParam = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.ApprovedSortParam = String.IsNullOrEmpty(sortOrder) ? "approved_desc" : "";
+            ViewBag.SearchString = searchString;
 
-            List<SelectListItem> adStatusList = new List<SelectListItem>();
-            adStatusList.Add(new SelectListItem
-            {
-                Text = "Active",
-                Value = "Active"
-            });
-            adStatusList.Add(new SelectListItem
-            {
-                Text = "Expired",
-                Value = "Expired"
-            });
-            adStatusList.Add(new SelectListItem
-            {
-                Text = "Denied",
-                Value = "Denied"
-            });
-            adStatusList.Add(new SelectListItem
-            {
-                Text = "Approved",
-                Value = "Approved"
-            });
-            adStatusList.Add(new SelectListItem
-            {
-                Text = "Pending",
-                Value = "Pending"
-            });
-            adStatusList.Add(new SelectListItem
-            {
-                Text = "All",
-                Value = "All"
-            });
-
-            ViewBag.adsStatusList = adStatusList;
+            
 
             var ads = from a in db.Ads
                       select a;
 
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                ads = ads.Where(a => a.Headline.Contains(searchString) || a.Description.Contains(searchString));
+                switch (searchString)
+                {
+                    case "Pending":
+                        ads = ads.Where(a => a.Approved == null);
+                        break;
+                    case "Approved":
+                        ads = ads.Where(a => a.Approved == true);
+                        break;
+                    case "Denied":
+                        ads = ads.Where(a => a.Approved == false);
+                        break;
+                    case "Active":
+                        ads = ads.Where(a => a.Active == true);
+                        break;
+                    case "Expired":
+                        ads = ads.Where(a => a.Active == false);
+                        break;
+                    default:
+                        ads = ads.Where(a => a.Headline.Contains(searchString) || a.Description.Contains(searchString));
+                        break;
+                }
+
             }
 
             switch (sortOrder)
@@ -112,7 +103,6 @@ namespace Vbay.Controllers
         }
 
 
-       
         // GET: Admin/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -198,13 +188,13 @@ namespace Vbay.Controllers
                             {
                                 case true:
                                     //Send email "Your ad has been Aproved"
-                                    mail.Body = "<h1>Approved</h1> <p>Your ad has been approved as of " + DateTime.Now;
+                                    mail.Body = "<h1>Approved</h1> Your ad has been approved as of " + DateTime.Now + ". <br/>Additional Comments: <br/>" + HttpUtility.HtmlDecode(ad.AdminComments)+ "<br/> - Your friendly Neighborhood Administrator";
                                     smtp.Send(mail);
                                     break;
 
                                 case false:
                                     //Send email "Your ad has been Denied"
-                                    mail.Body = "<h1>Denied</h1> <p>Your ad has been denied as of " + DateTime.Now + ". Your ad was denied because: " + HttpUtility.HtmlDecode(ad.AdminComments) + "<br/>" + "- Your Friendly Neighborhood Administrator";
+                                    mail.Body = "<h1>Denied</h1> Your ad has been denied as of " + DateTime.Now + ". Your ad was denied because: " + HttpUtility.HtmlDecode(ad.AdminComments) + "<br/>" + "- Your Friendly Neighborhood Administrator";
                                     smtp.Send(mail);
                                     break;
                             }
