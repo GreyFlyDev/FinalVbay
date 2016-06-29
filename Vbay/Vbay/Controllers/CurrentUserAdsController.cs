@@ -150,7 +150,7 @@ namespace Vbay.Controllers
                         {
                             smtp.Credentials = new NetworkCredential("gregnnylf94@gmail.com", "Enjoilif3!");
                             smtp.EnableSsl = true;
-                            mail.Body = "<h1>Alert</h1><p>Since the description of your ad has changed, it has been resubmitted for approval.<br/> You will receive an email regarding your status shortly.</p>" +
+                            mail.Body = "<h1>Alert</h1><p>Since the description of your" + "'" + ad.Headline + "'" + " ad has changed, it has been resubmitted for approval.<br/> You will receive an email regarding your status shortly.</p>" +
                                 "<p>-Your Friendly Neighborhood Administrator</p>";
                             smtp.Send(mail);
                         }

@@ -149,7 +149,7 @@ namespace Vbay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Headline,Description,Price,Approved,DatePosted,UserId")] Ad ad)
+        public ActionResult Edit([Bind(Include = "Id,Headline,Description,Price,Approved,DatePosted,AdminComments,UserId")] Ad ad)
         {
             if (ModelState.IsValid)
             {
@@ -204,7 +204,7 @@ namespace Vbay.Controllers
 
                                 case false:
                                     //Send email "Your ad has been Denied"
-                                    mail.Body = "<h1>Denied</h1> <p>Your ad has been denied as of " + DateTime.Now;
+                                    mail.Body = "<h1>Denied</h1> <p>Your ad has been denied as of " + DateTime.Now + ". Your ad was denied because: " + HttpUtility.HtmlDecode(ad.AdminComments) + "<br/>" + "- Your Friendly Neighborhood Administrator";
                                     smtp.Send(mail);
                                     break;
                             }

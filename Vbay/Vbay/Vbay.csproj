@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201606231233244_AddedActiveProperty.Designer.cs">
       <DependentUpon>201606231233244_AddedActiveProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606291302071_CommentsPropertyForAdEntity.cs" />
+    <Compile Include="Migrations\201606291302071_CommentsPropertyForAdEntity.Designer.cs">
+      <DependentUpon>201606291302071_CommentsPropertyForAdEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ad.cs" />
@@ -1572,6 +1576,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606231233244_AddedActiveProperty.resx">
       <DependentUpon>201606231233244_AddedActiveProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291302071_CommentsPropertyForAdEntity.resx">
+      <DependentUpon>201606291302071_CommentsPropertyForAdEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
