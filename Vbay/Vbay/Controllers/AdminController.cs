@@ -172,16 +172,16 @@ namespace Vbay.Controllers
 
                 using (MailMessage mail = new MailMessage())
                 {
-                    mail.From = new MailAddress("gregnnylf94@gmail.com");
+                    mail.From = new MailAddress("gflynn@volusia.org");
                     mail.To.Add(adOwner.Email);
                     mail.Subject = "Ad Status";
 
                     mail.IsBodyHtml = true;
 
-                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    using (SmtpClient smtp = new SmtpClient("10.1.5.171"))
                     {
-                        smtp.Credentials = new NetworkCredential("gregnnylf94@gmail.com", "Enjoilif3!");
-                        smtp.EnableSsl = true;
+                        smtp.Credentials = new NetworkCredential("gflynn@volusia.org", "1nl1ke");
+                        smtp.EnableSsl = false;
                         if (TempData["AdStatus"] == null || ad.Approved != (bool)TempData["AdStatus"])
                         {
                             switch (ad.Approved)

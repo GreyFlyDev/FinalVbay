@@ -140,16 +140,18 @@ namespace Vbay.Controllers
 
                     using (MailMessage mail = new MailMessage())
                     {
-                        mail.From = new MailAddress("gregnnylf94@gmail.com");
+                        //Replace with admin Email
+                        mail.From = new MailAddress("gflynn@volusia.org");
                         mail.To.Add(adOwner.Email);
                         mail.Subject = "Your Ad Has Changed";
 
                         mail.IsBodyHtml = true;
 
-                        using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                        using (SmtpClient smtp = new SmtpClient("10.1.5.171"))
                         {
-                            smtp.Credentials = new NetworkCredential("gregnnylf94@gmail.com", "Enjoilif3!");
-                            smtp.EnableSsl = true;
+                            //Replace with admin Credentials
+                            smtp.Credentials = new NetworkCredential("gflynn@volusia.org", "1nl1ke");
+                            smtp.EnableSsl = false;
                             mail.Body = "<h1>Alert</h1><p>Since the description of your" + "'" + ad.Headline + "'" + " ad has changed, it has been resubmitted for approval.<br/> You will receive an email regarding your status shortly.</p>" +
                                 "<p>-Your Friendly Neighborhood Administrator</p>";
                             smtp.Send(mail);
